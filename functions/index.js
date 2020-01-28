@@ -21,6 +21,8 @@ exports.makeUserInDb = functions.region('europe-west1').auth.user().onCreate((us
     const picture = user.photoURL || null;
     const email = user.email || null;
     const surname = null;
+    if (displayName != null){
+
     var arr = displayName.split(" ");
     if(arr.length > 2) {
         const name = arr[0];
@@ -31,6 +33,9 @@ exports.makeUserInDb = functions.region('europe-west1').auth.user().onCreate((us
         
     }
     surname.trim();
+    
+    }
+    
     // [END authIntegration]
     console.log(uid);
 
@@ -45,3 +50,7 @@ exports.makeUserInDb = functions.region('europe-west1').auth.user().onCreate((us
     });
     // [END_EXCLUDE]
 });
+
+
+
+
