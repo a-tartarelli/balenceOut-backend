@@ -34,7 +34,6 @@ exports.makeUserInDb = functions.region('europe-west1').auth.user().onCreate((us
         }
         group.getNameGroup()
     }
-
     // [END authIntegration]
     console.log(uid);
 
@@ -50,3 +49,7 @@ exports.makeUserInDb = functions.region('europe-west1').auth.user().onCreate((us
     });
     // [END_EXCLUDE]
 });
+
+
+
+
