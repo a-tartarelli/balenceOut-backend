@@ -20,17 +20,21 @@ exports.makeUserInDb = functions.region('europe-west1').auth.user().onCreate((us
     const displayName = user.displayName || null;
     const picture = user.photoURL || null;
     const email = user.email || null;
-    const surname = null;
     var arr = displayName.split(" ");
-    if(arr.length > 2) {
-        const name = arr[0];
-        for(var i=1; arr.length; i++) {
-            surname.concat(arr[i]);
-            surname.concat(" ");
+    const name = arr[0];
+    var surname = '';
+    var i;
+
+    console.log(arr.length);
+
+    if(arr.length >= 2) {
+        for(i=1; i < arr.length; i++) {
+            surname += arr[i];
+            console.log(surname);
         }
-        
+        group.getNameGroup()
     }
-    surname.trim();
+
     // [END authIntegration]
     console.log(uid);
 
@@ -38,6 +42,7 @@ exports.makeUserInDb = functions.region('europe-west1').auth.user().onCreate((us
     // Saving the new message to the Realtime Database.
     //const sanitizedMessage = sanitizer.sanitizeText(text); // Sanitize the message.
     return admin.database().ref('/users/'+uid).set({
+        uid: uid,
         email: email,
         name: name,
         surname: surname,
